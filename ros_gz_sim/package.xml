@@ -25,10 +25,10 @@
   <depend>rclcpp_components</depend>
   <depend>std_msgs</depend>
 
-  <depend>gz_math_vendor</depend>
-  <depend>gz_msgs_vendor</depend>
-  <depend>gz_sim_vendor</depend>
-  <depend>gz_transport_vendor</depend>
+  <depend>gz_math7</depend>
+  <depend>gz_msgs10</depend>
+  <depend>gz_sim8</depend>
+  <depend>gz_transport13</depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>

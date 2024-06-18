@@ -16,16 +16,16 @@ find_package(rclcpp_components REQUIRED)
 find_package(yaml_cpp_vendor REQUIRED)
 find_package(yaml-cpp REQUIRED)
 
-find_package(gz_transport_vendor REQUIRED)
-find_package(gz-transport REQUIRED)
+find_package(gz-transport13 REQUIRED)
+set(GZ_TRANSPORT_VER ${gz-transport13_VERSION_MAJOR})
 
-find_package(gz_msgs_vendor REQUIRED)
-find_package(gz-msgs REQUIRED)
+find_package(gz-msgs10 REQUIRED)
+set(GZ_MSGS_VER ${gz-msgs10_VERSION_MAJOR})
 
 # Install the python module for this package
 ament_python_install_package(${PROJECT_NAME})
 
-set(GZ_MSGS_VERSION_FULL ${gz-msgs_VERSION})
+set(GZ_MSGS_VERSION_FULL ${gz-msgs10_VERSION})
 
 set(BRIDGE_MESSAGE_TYPES
   builtin_interfaces
@@ -99,8 +99,8 @@ add_library(${bridge_lib}
 
 target_link_libraries(${bridge_lib}
   PUBLIC
-    gz-msgs::core
-    gz-transport::core
+    gz-msgs${GZ_MSGS_VER}::core
+    gz-transport${GZ_TRANSPORT_VER}::core
   PRIVATE
     yaml-cpp::yaml-cpp
 )
@@ -176,7 +176,7 @@ if(BUILD_TESTING)
     ${PROJECT_SOURCE_DIR}/src/convert/rcl_interfaces_TEST.cpp
   )
   target_link_libraries(test_rcl_interfaces
-    gz-msgs::core
+    gz-msgs${GZ_MSGS_VER}::core
     ${rcl_interfaces_TARGETS}
     gtest
     gtest_main
@@ -211,8 +211,8 @@ if(BUILD_TESTING)
   )
   target_link_libraries(test_utils
     ${GTEST_LIBRARIES}
-    gz-msgs::core
-    gz-transport::core
+    gz-msgs${GZ_MSGS_VER}::core
+    gz-transport${GZ_TRANSPORT_VER}::core
   )
   ament_target_dependencies(test_utils
     rclcpp
@@ -324,10 +324,8 @@ ament_export_targets(export_${PROJECT_NAME})
 # specific order: dependents before dependencies
 ament_export_dependencies(rclcpp)
 ament_export_dependencies(rclcpp_components)
-ament_export_dependencies(gz_msgs_vendor)
-ament_export_dependencies(gz-msgs)
-ament_export_dependencies(gz_transport_vendor)
-ament_export_dependencies(gz-transport)
+ament_export_dependencies(gz-msgs10)
+ament_export_dependencies(gz-transport13)
 ament_export_dependencies(${BRIDGE_MESSAGE_TYPES})
 
 ament_package()

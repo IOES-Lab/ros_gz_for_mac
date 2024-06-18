@@ -16,11 +16,11 @@ find_package(ros_gz_bridge REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
 
-find_package(gz_transport_vendor REQUIRED)
-find_package(gz-transport REQUIRED)
+find_package(gz-transport13 REQUIRED)
+set(GZ_TRANSPORT_VER ${gz-transport13_VERSION_MAJOR})
 
-find_package(gz_msgs_vendor REQUIRED)
-find_package(gz-msgs REQUIRED)
+find_package(gz-msgs10 REQUIRED)
+set(GZ_MSGS_VER ${gz-msgs10_VERSION_MAJOR})
 
 include_directories(include)
 
@@ -33,8 +33,8 @@ add_executable(${executable}
 )
 
 target_link_libraries(${executable}
-  gz-msgs::core
-  gz-transport::core
+  gz-msgs${GZ_MSGS_VER}::core
+  gz-transport${GZ_TRANSPORT_VER}::core
 )
 
 ament_target_dependencies(${executable}
