@@ -71,7 +71,7 @@ ament_target_dependencies(gzserver_component
   std_msgs
 )
 target_link_libraries(gzserver_component
-  gz-sim::core
+  gz-msgs${GZ_SIM_VER}::core
 )
 ament_target_dependencies(gzserver_component std_msgs)
 rclcpp_components_register_node(
