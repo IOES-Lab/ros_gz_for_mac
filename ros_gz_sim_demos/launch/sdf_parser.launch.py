@@ -42,11 +42,11 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(
             os.path.join(pkg_ros_gz_sim, 'launch', 'gz_sim.launch.py'),
         ),
-        launch_arguments={'gz_args': PathJoinSubstitution([
+        launch_arguments={'gz_args': ['-s -r ', PathJoinSubstitution([
             pkg_ros_gz_sim_demos,
             'worlds',
             'vehicle.sdf'
-        ])}.items(),
+        ])]}.items()
     )
 
     # Bridge to forward tf and joint states to ros2
