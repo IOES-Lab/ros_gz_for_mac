@@ -29,6 +29,9 @@
   <depend>gz_msgs10</depend>
   <depend>gz_sim8</depend>
   <depend>gz_transport13</depend>
+  <depend>gz_common5</depend>
+  <depend>sdformat14</depend>
+  <depend>gz-plugin2</depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>

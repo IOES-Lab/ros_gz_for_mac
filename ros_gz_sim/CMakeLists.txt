@@ -4,7 +4,7 @@ project(ros_gz_sim)
 
 # Default to C++14
 if(NOT CMAKE_CXX_STANDARD)
-  set(CMAKE_CXX_STANDARD 14)
+  set(CMAKE_CXX_STANDARD 17)
 endif()
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wpedantic")
@@ -17,16 +17,30 @@ find_package(std_msgs REQUIRED)
 
 find_package(gz-math7 REQUIRED)
 set(GZ_MATH_VER ${gz-math7_VERSION_MAJOR})
+include_directories(${gz-math7_INCLUDE_DIRS})
 
 find_package(gz-transport13 REQUIRED)
 set(GZ_TRANSPORT_VER ${gz-transport13_VERSION_MAJOR})
+include_directories(${gz-transport13_INCLUDE_DIRS})
 
-find_package(gz-msgs10 REQUIRED)
+find_package(gz-msgs11 REQUIRED)
 set(GZ_MSGS_VER ${gz-msgs10_VERSION_MAJOR})
+include_directories(${gz-msgs10_INCLUDE_DIRS})
+
+find_package(gz-common5 REQUIRED)
+set(GZ_COMMON_VER ${gz-common5_VERSION_MAJOR})
+include_directories(${gz-common5_INCLUDE_DIRS})
 
 find_package(gz-sim8 REQUIRED)
 # Needed in launch/gz_sim.launch.py.in
-set(GZ_SIM_VER ${gz-sim_VERSION_MAJOR})
+set(GZ_SIM_VER ${gz-sim8_VERSION_MAJOR})
+include_directories(${gz-sim8_INCLUDE_DIRS})
+
+find_package(sdformat14 REQUIRED)
+include_directories(${sdformat14_INCLUDE_DIRS})
+
+find_package(gz-plugin2 REQUIRED)
+include_directories(${gz-plugin2_INCLUDE_DIRS})
 
 gz_find_package(gflags
     REQUIRED
@@ -72,6 +86,13 @@ ament_target_dependencies(gzserver_component
 )
 target_link_libraries(gzserver_component
   gz-msgs${GZ_MSGS_VER}::core
+  ${gz-math7_LIBRARIES}
+  ${gz-transport13_LIBRARIES}
+  ${gz-msgs10_LIBRARIES}
+  ${gz-common5_LIBRARIES}
+  ${gz-sim8_LIBRARIES}
+  ${gz-plugin2_LIBRARIES}
+  ${sdformat14_LIBRARIES}
 )
 ament_target_dependencies(gzserver_component std_msgs)
 rclcpp_components_register_node(
