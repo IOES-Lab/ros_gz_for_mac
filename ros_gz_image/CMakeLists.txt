@@ -68,8 +68,8 @@ if(BUILD_TESTING)
   #   )
   #   target_link_libraries(${test_publisher}_image
   #     ${catkin_LIBRARIES}
-  #     $gz-msgs$::core
-  #     $gz-transport::core
+  #     gz-msgs${GZ_MSGS_VER}::core
+  #     gz-transport${GZ_TRANSPORT_VER}::core
   #     gtest
   #     gtest_main
   #   )
@@ -81,8 +81,8 @@ if(BUILD_TESTING)
   #     test/subscribers/${test_subscriber}.cpp)
   #   target_link_libraries(test_${test_subscriber}_image
   #     ${catkin_LIBRARIES}
-  #     $gz-msgs::core
-  #     $gz-transport::core
+  #     gz-msgs${GZ_MSGS_VER}::core
+  #     gz-transport${GZ_TRANSPORT_VER}::core
   #   )
   # endforeach(test_subscriber)
 endif()
