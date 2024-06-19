@@ -61,7 +61,7 @@ def launch_gz(context, *args, **kwargs):
         on_exit = None
 
     return [ExecuteProcess(
-            cmd=[exec, exec_args, '--force-version', gz_version],
+            cmd=[exec, exec_args, '-s --force-version', gz_version],
             output='screen',
             additional_env=env,
             shell=True,
